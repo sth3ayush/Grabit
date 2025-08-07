@@ -1,11 +1,20 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Grabit</title>
+    <link rel="icon" type="image/png" href="{% static 'images/grabit-s-logo.png' %}">
 </head>
-<body>
-    <h1>This is Grabit!!</h1>
+<body style="background-color:#e0e5e9;">
+    <img src="{% static 'images/grabit-l-logo.png' %}" height="45px">
+
+    {% block content %}
+
+    {% endblock %}
+
 </body>
 </html>
