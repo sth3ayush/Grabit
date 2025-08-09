@@ -7,10 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grabit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="icon" type="image/png" href="{% static 'images/grabit-s-logo.png' %}">
+
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/nav.css' %}" />
 </head>
-<body style="background-color:#e0e5e9;">
-    <img src="{% static 'images/grabit-l-logo.png' %}" height="45px">
+<body>
+
+    {% include 'nav.html' %}
 
     {% block content %}
 

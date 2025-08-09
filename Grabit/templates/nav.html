@@ -1,0 +1,43 @@
+{% load static %}
+
+<nav>
+    <a href="#" class="logo">
+        <img src="{% static 'images/grabit-l-logo.png' %}">
+    </a>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <i id="clearBtn" class="fa-solid fa-xmark clear-icon" title="Clear" aria-hidden="true"></i>
+        <button type="submit" class="search-btn" title="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </div>
+
+    <div class="nav-icons">
+        <span class="icon-badge">
+            <i class="fa-solid fa-cart-shopping" title="Cart"></i>
+            <span class="badge">2</span>
+        </span>
+        <i class="fa-solid fa-user-check" title="Welcome"></i>
+
+        <!-- <i class="fa-solid fa-user-plus" title="Register"></i>
+        <i class="fa-solid fa-user" title="Login"></i> -->
+
+        <i class="fa-solid fa-gear" title="Setting"></i>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const input = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearBtn');
+
+        const toggleClear = () => clearBtn.style.display = input.value ? 'block' : 'none';
+
+        input.addEventListener('input', toggleClear);
+        input.addEventListener('keydown', e => e.key === 'Escape' && (input.value = '', toggleClear()));
+        clearBtn.addEventListener('click', () => { input.value = ''; toggleClear(); input.focus(); });
+
+        toggleClear();
+    });
+</script>

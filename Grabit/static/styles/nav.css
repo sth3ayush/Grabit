@@ -1,0 +1,122 @@
+nav {
+    height: 60px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #e0e5e9;
+    border-bottom: 1px solid #262626;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.search-container {
+    flex: 1;
+    max-width: 550px;
+    display: flex;
+    position: relative;
+    margin: 0 20px;
+    background: #e0e5e9;
+}
+
+.search-container input {
+    width: 100%;
+    height: 40px;
+    padding: 0 150px 0 18px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; 
+}
+
+.clear-icon {
+    position: absolute;
+    right: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #262626;
+    cursor: pointer;
+    font-size: 16px;
+    display: none;
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    padding: 0 12px;
+    background: #262626;
+    border: none;
+    color: #e0e5e9;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-btn:active {
+    background: #9d9da1;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-icons i {
+    cursor: pointer;
+    transition: transform 0.5s ease;
+    color: #262626;
+    font-size: 25px;
+}
+
+.nav-icons i:active {
+    color: #9d9da1;
+}
+
+.nav-icons .fa-gear:hover {
+    transform: rotate(180deg);
+}
+
+.nav-icons .fa-cart-shopping:hover {
+    transform: translateX(7px);
+}
+
+.nav-icons .fa-user:hover,
+.nav-icons .fa-user-check:hover,
+.nav-icons .fa-user-plus:hover {
+    transform: scale(1.5);
+}
+
+.icon-badge {
+    position: relative;
+    display: inline-block;
+}
+
+.badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: #970037;
+    color: #e0e5e9;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+    line-height: 1;
+}
