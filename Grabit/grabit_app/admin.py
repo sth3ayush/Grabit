@@ -1,21 +1,28 @@
 from django.contrib import admin
-from .models import *
-from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
+from .models import *
 
-class AccountInline(admin.StackedInline):
-    model = Account
-    can_delete = False
-    verbose_name_plural = 'Accounts'
+class CustomUserAdmin(UserAdmin):
+    model = CustomUser
+    list_display = ('email', 'first_name', 'last_name', 'mobile_no', 'dob', 'is_staff', 'is_active')
+    list_filter = ('is_staff', 'is_active')
+    search_fields = ('email', 'first_name', 'last_name', 'mobile_no')
+    ordering = ('email',)
 
-class CustomUserAdmin (UserAdmin):
-    inlines = (AccountInline, )
+    fieldsets = (
+        (None, {'fields': ('email', 'password', 'first_name', 'last_name', 'mobile_no', 'dob', 'default_address')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Important Dates', {'fields': ('last_login', 'date_joined')}),
+    )
 
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'first_name', 'last_name', 'mobile_no', 'dob', 'default_address', 'password1', 'password2', 'is_staff', 'is_active')}
+        ),
+    )
 
-admin.site.register(Account)
-
+admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Product)
 admin.site.register(ProductQuestion)
 admin.site.register(ProductRating)
