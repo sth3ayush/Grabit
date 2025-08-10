@@ -1,0 +1,71 @@
+{% load static %}
+
+<div class="header-bar">
+  <div class="left"><a href="#" id="allCategoriesBtn">All Categories</a></div>
+  <div class="right">
+    <a href="#">About Us</a>
+    <a href="#">Report</a>
+    <a href="#">Become a Seller</a>
+  </div>
+</div>
+
+<div id="modalOverlay" class="modal-overlay hidden" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <span id="closeModal" class="close-btn" aria-label="Close modal">&times;</span>
+    <h2 id="modalTitle">All Categories</h2>
+    <div class="modal-content">
+      <ul class="category-list" id="categoryList">
+        {% for category in category %}
+        <li class="category-item" data-target="{{category.c_name}}">{{category.c_name}}</li>
+        {% endfor %}
+      </ul>
+      <div class="category-detail" id="categoryDetail">
+        {% for category in category %}
+        <section id="{{category.c_name}}">
+          <h3>{{category.c_name}}</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum iusto laboriosam doloremque placeat quibusdam quam culpa soluta aspernatur delectus itaque, impedit earum. Ea porro, quam illo facere ducimus labore modi! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis delectus laboriosam quo autem repellendus dolorum pariatur sint nostrum nesciunt. Fugiat magnam incidunt non molestiae saepe, sequi quo veritatis eos modi! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis rem ipsam quasi? Minima numquam, saepe nam delectus dolores neque laboriosam fugiat at dignissimos enim, aperiam quae consequuntur pariatur atque aliquid?</p>
+        </section>
+        <br>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const allCategoriesBtn = document.getElementById('allCategoriesBtn');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const closeModal = document.getElementById('closeModal');
+
+  allCategoriesBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    modalOverlay.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+  });
+
+  closeModal.addEventListener('click', function () {
+    modalOverlay.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+  });
+
+  modalOverlay.addEventListener('click', function (e) {
+    if (e.target === modalOverlay) {
+      modalOverlay.classList.add('hidden');
+      document.body.classList.remove('modal-open');
+    }
+  });
+
+  const categoryList = document.getElementById('categoryList');
+  const categoryDetail = document.getElementById('categoryDetail');
+
+  categoryList.onclick = (e) => {
+    const li = e.target.closest('li.category-item');
+    if (!li) return;
+
+    categoryList.querySelector('.selected')?.classList.remove('selected');
+    li.classList.add('selected');
+
+    const targetSection = document.getElementById(li.dataset.target);
+    if (targetSection) targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+</script>

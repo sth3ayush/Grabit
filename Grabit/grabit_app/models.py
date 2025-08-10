@@ -101,3 +101,9 @@ class ProductRating(models.Model):
 
     def __str__(self):
         return f"{self.user.email} rated {self.product.name} - {self.rating}"
+    
+class Category(models.Model):
+    c_name = models.CharField(max_length=77, unique=True)
+
+    def __str__(self):
+        return self.c_name
