@@ -36,7 +36,7 @@ nav {
     outline: none;
     font-size: 15px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .clear-icon {
@@ -76,6 +76,8 @@ nav {
     display: flex;
     gap: 15px;
     align-items: center;
+    position: relative;
+    display: inline-block;
 }
 
 .nav-icons i {
@@ -112,11 +114,107 @@ nav {
     position: absolute;
     top: -6px;
     right: -8px;
-    background: #970037;
+    background: #960037;
     color: #e0e5e9;
     font-size: 12px;
     padding: 2px 6px;
     border-radius: 50%;
     font-weight: bold;
     line-height: 1;
+}
+
+.settings-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.settings-popup-menu {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    width: 210px;
+    height: 250px;
+    margin: 0;
+    background: #fefefe;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.settings-popup-menu a {
+    text-decoration: none;
+    color: #262626;
+    font-size: 13px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.settings-popup-menu a:hover {
+    color: #0295db;
+}
+
+.settings-popup-menu i {
+    font-size: 13.5px;
+}
+
+.settings-popup-menu i:hover{
+    color: #9d9da1;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.user-dropdown {
+    position: absolute;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    top: 50px;
+    right: 0;
+    width: 200px;
+    background: #fefefe;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 15px;
+    text-align: center;
+    display: none;
+}
+
+.user-dropdown h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #262626;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.user-dropdown h4 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+}
+
+.user-dropdown p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    color: #9d9da1;
+    font-size: 14px;
+    word-break: break-all; 
+    overflow-wrap: break-word; 
+    max-width: 100%; 
 }

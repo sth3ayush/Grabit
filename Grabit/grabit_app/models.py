@@ -32,6 +32,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
+    is_seller = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []  
@@ -107,3 +108,16 @@ class Category(models.Model):
 
     def __str__(self):
         return self.c_name
+    
+class StoreAccount(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    store_name = models.CharField(max_length=100, unique=True)
+    store_logo = models.ImageField(upload_to="Store_logo", null=True, blank=True)
+    store_verification = models.ImageField(upload_to="Store", null=True, blank=True)
+
+    contact_no = models.CharField(max_length=15)
+    created_at = models.DateTimeField(auto_now_add=True)
+    verified = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.store_name

@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-image-side">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.BRPm1CDq2C1OeTW5vuxKQgHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="Login Illustration">
+    </div>
+    <div class="form-side">
+        <h2>Create Account</h2>
+        <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            <label>First Name</label>
+            <input type="text" placeholder="First name" name="f_name" required>
+
+            <label>Last Name</label>
+            <input type="text" placeholder="Last name" name="l_name" required>
+
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email" name="email" required>
+
+            <label>Password</label>
+            <div class="password-container">
+                <input type="password" id="password1" placeholder="Enter your password" name="password1" required>
+                <span class="toggle-password1" onclick="togglePassword1()">
+                    <i class="fa-regular fa-eye"></i>
+                </span>
+            </div>
+
+            <label>Confirm Password</label>
+            <div class="password-container">
+                <input type="password" id="password2" placeholder="Confirm your password" name="password2" required>
+                <span class="toggle-password2" onclick="togglePassword2()">
+                    <i class="fa-regular fa-eye"></i>
+                </span>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+        <p class="link-text">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
+</div>
+
+<script>
+    function togglePassword1() {
+        const passwordInput = document.getElementById("password1");
+        const icon = document.querySelector(".toggle-password1 i");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+
+        function togglePassword2() {
+        const passwordInput = document.getElementById("password2");
+        const icon = document.querySelector(".toggle-password2 i");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
+
+{% endblock %}

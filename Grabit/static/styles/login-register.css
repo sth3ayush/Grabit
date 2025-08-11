@@ -1,0 +1,123 @@
+.form-container {
+    display: flex;
+    height: calc(100vh - 75px);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-top: 15px;
+}
+
+.form-image-side {
+    width: 50%;
+    height: calc(100vh - 90px);
+    margin: 0;
+    background: rgb(2, 133, 219, 0.2);
+    border-radius: 10px 0 0 10px;
+}
+
+.form-image-side img {
+    width: 100%;
+    height: calc(100vh - 90px);
+    object-fit: cover;
+    margin: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+.form-side {
+    width: 50%;
+    background: #f5ffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    align-items: center;
+    margin: 0;
+    border-radius: 0 10px 10px 0;
+}
+
+.form-side h1 {
+    margin-bottom: 20px;
+    color: #262626;
+}
+
+.form-side form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-side label {
+    margin-top: 10px;
+    color: #262626;
+}
+
+.form-side button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background: #0295db;
+    color: #fefefe;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-side button:hover {
+    background: #9d9da1;
+}
+
+.form-side button:active {
+    background: #960037;
+}
+
+.form-side .link-text {
+    margin-top: 15px;
+    color: #9d9da1;
+}
+
+.form-side .link-text a {
+    color: #0295db;
+    text-decoration: none;
+}
+
+.form-side .link-text a:hover {
+    text-decoration: underline;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+    margin-top: 5px;
+    margin: 0;
+}
+
+.form-side input,
+.password-container input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 50px; 
+    margin-top: 5px;
+    border: 1px solid #262626;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.toggle-password1,
+.toggle-password2,
+.toggle-password {
+    position: absolute;
+    right: 8px; 
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+    font-size: 18px;
+    color: #262626;
+    margin: 0;
+}
+
+.toggle-password1 i,
+.toggle-password2 i,
+.toggle-password i {
+    padding-left: 25px;
+}
