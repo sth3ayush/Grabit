@@ -4,21 +4,23 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding-top: 15px;
 }
-
 .form-image-side {
     width: 50%;
     height: calc(100vh - 90px);
     margin: 0;
     background: rgb(2, 133, 219, 0.2);
     border-radius: 10px 0 0 10px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; 
 }
 
 .form-image-side img {
     width: 100%;
-    height: calc(100vh - 90px);
-    object-fit: cover;
-    margin: 0;
+    height: auto; 
     border-radius: 10px 0 0 10px;
+    object-fit: cover; 
 }
 
 .form-side {

@@ -71,3 +71,6 @@ def registerPage(request):
 def logoutPage(request):
     logout(request)
     return redirect('home')
+
+def sellerAccount(request):
+    return render()

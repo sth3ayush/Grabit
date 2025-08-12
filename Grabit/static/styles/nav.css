@@ -101,7 +101,11 @@ nav {
 
 .nav-icons .fa-user:hover,
 .nav-icons .fa-user-check:hover,
-.nav-icons .fa-user-plus:hover {
+.nav-icons .fa-user-plus:hover,
+.nav-icons .fa-store:hover,
+.nav-icons .fa-file-invoice:hover,
+.nav-icons .fa-question-circle:hover,
+.nav-icons .fa-sign-out-alt:hover {
     transform: scale(1.5);
 }
 
@@ -133,7 +137,7 @@ nav {
     top: 35px;
     right: 0;
     width: 210px;
-    height: 250px;
+    height: 200px;
     margin: 0;
     background: #fefefe;
     border: 1px solid #ccc;

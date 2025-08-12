@@ -25,7 +25,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
 
-    mobile_no = models.CharField(max_length=10)
+    mobile_no = models.CharField(max_length=15)
     dob = models.DateField(null=True, blank=True)
     default_address = models.CharField(max_length=300, null=True, blank=True)
 
@@ -75,7 +75,14 @@ class Product(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return f"{self.user.email} {self.name}"
+    
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='Product_images')
+
+    def __str__(self):
+        return f"{self.product.name} - {self.image.name}"
     
 class ProductQuestion(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -88,7 +95,7 @@ class ProductQuestion(models.Model):
     
 class ProductRating(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='ratings')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='ratings')
     rating = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
@@ -121,3 +128,14 @@ class StoreAccount(models.Model):
 
     def __str__(self):
         return self.store_name
+    
+class Cart(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(
+        validators=[MinValueValidator(1)],
+        default=1
+    )
+
+    def __str__(self):
+        return f"{self.user.email} {self.product.name[:10]}..."
