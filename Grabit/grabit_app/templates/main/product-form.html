@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="product-form-container">
+
+
+    <div class="pf-image-side">
+        <img src="{% static 'images/add-product-img.png' %}" alt="Side Image">
+    </div>
+
+    <div class="product-form">
+        <form method="post" action="{% url 'product-form' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Add Product</h2>
+            <label>Product Name</label>
+            <input type="text" name="p_name" placeholder="Enter product name" required>
+
+            <label>Price (NRP.)</label>
+            <input type="number" name="price" step="1" placeholder="Enter price" required>
+
+            <label>Discount (%)</label>
+            <input type="number" name="discount" placeholder="Enter discount" value="0.0" required>
+
+            <label>Description</label>
+            <textarea name= "description" placeholder="Enter description"></textarea>
+
+            <label>Brand</label>
+            <input type="text" name="brand" placeholder="Enter brand" value="No Brand" required>
+
+            <div class="image-counter" id="imageCounter">0 images uploaded</div>
+            <label>Upload Images</label>
+            <div class="upload-box" onclick="document.getElementById('images').click()">
+                <img src="https://cdn-icons-png.flaticon.com/512/1829/1829586.png" alt="Upload Icon">
+                <p>Drop your image here, or <span style="color:#0295db;cursor:pointer;">browse</span></p>
+                <p style="font-size:12px;">Supports: JPG, JPEG2000, PNG</p>
+            </div>
+            <input type="file" id="images" name="images" accept="image/*" multiple style="display:none">
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <button type="submit" class="submit-btn">Add Product</button>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    const imageInput = document.getElementById('images');
+    const imageCounter = document.getElementById('imageCounter');
+    const progressBar = document.getElementById('progressBar');
+
+    imageInput.addEventListener('change', function () {
+        let count = imageInput.files.length;
+        imageCounter.textContent = `${count} image${count !== 1 ? 's' : ''} uploaded`;
+
+        // Fake progress animation
+        progressBar.style.width = '0%';
+        let progress = 0;
+        let fakeUpload = setInterval(() => {
+            if (progress >= 100) {
+                clearInterval(fakeUpload);
+            } else {
+                progress += 10;
+                progressBar.style.width = progress + '%';
+            }
+        }, 200);
+    });
+</script>
+
+{% endblock %}

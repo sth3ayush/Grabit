@@ -1,0 +1,147 @@
+    .product-form-container {
+        display: flex;
+        height: calc(100vh - 100px);
+        padding-top: 10px;
+    }
+
+    .product-form {
+        margin: 0;
+        width: 50%;
+        background: #f5ffff;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        overflow-y: auto;
+        height: calc(100vh - 100px);
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .product-form form {
+        width: 100%;
+        max-width: 400px;
+        margin: 0;
+    }
+
+    .product-form h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: #262626;
+    }
+
+    .product-form label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+        color: #262626;
+    }
+
+    .product-form input,
+    textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .product-form textarea {
+        resize: none;
+        height: 80px;
+        margin: 0;
+    }
+
+    .product-form .upload-box {
+        margin-top: 15px;
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+        background: #fff;
+        text-align: center;
+        padding: 30px 20px;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+        margin: 0;
+    }
+
+    .product-form .upload-box:hover {
+        border-color: #0295db;
+    }
+
+    .product-form .upload-box img {
+        width: 50px;
+        opacity: 0.7;
+        margin: 0;
+    }
+
+    .product-form .upload-box p {
+        margin: 8px 0;
+        font-size: 14px;
+        color: #666;
+        margin: 0;
+    }
+
+    .product-form .image-counter {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+        text-align: left;
+        margin: 0;
+    }
+
+    .product-form .progress-container {
+        margin-top: 10px;
+        background: #e9ecef;
+        height: 6px;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 0;
+    }
+
+    .product-form .progress-bar {
+        width: 0%;
+        height: 100%;
+        background: #0295db;
+        transition: width 0.3s ease;
+        margin: 0;
+    }
+
+    .product-form .submit-btn {
+        display: block;
+        width: 100%;
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #0295db;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 0;
+    }
+
+    .product-form .submit-btn:hover {
+        background-color: #0295db;
+    }
+
+    .pf-image-side {
+        width: 50%;
+        background: rgb(2, 133, 219, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        height: calc(100vh - 100px);
+        margin: 0;
+    }
+
+    .pf-image-side img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px 0 0 10px;
+        object-fit: cover;
+        margin: 0;
+    }

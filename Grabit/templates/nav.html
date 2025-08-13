@@ -37,7 +37,7 @@
             <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
             <a href="#"><i class="fa-solid fa-file-invoice"></i>Account Setting</a> 
             {% if user.is_seller %}
-                <a href="#"><i class="fas fa-store"></i> Seller Account</a>
+                <a href="{% url 'product-form' %}"><i class="fas fa-store"></i> Seller Account</a>
             {% else %}
                 <a href="#"><i class="fas fa-cart-shopping"></i> Cart</a>
             {% endif %}

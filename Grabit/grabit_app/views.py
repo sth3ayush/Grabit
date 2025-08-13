@@ -72,5 +72,39 @@ def logoutPage(request):
     logout(request)
     return redirect('home')
 
+@login_required(login_url='login')
 def sellerAccount(request):
     return render()
+
+@login_required(login_url='login')
+def productForm(request):
+    if request.method == 'POST':
+        try:
+            product = Product.objects.create(
+                user = request.user,
+                name = request.POST.get('p_name'),
+                price = request.POST.get('price'),
+                description = request.POST.get('description'),
+                discount_percent = request.POST.get('discount'),
+                brand = request.POST.get('brand')
+            )
+
+            files = request.FILES.getlist('images')
+            if not files:
+                return render(request, 'main/product-form.html', {
+                    "error": "Please upload at least one image"
+                })
+            
+            for image in files:
+                ProductImage.objects.create(
+                    product = product,
+                    image = image
+                )
+
+            return redirect('home')
+        except Exception as e:
+            return render(request, 'main.product-form.html', {
+                "error": f"Error while adding product {e}"
+            })
+        
+    return render(request, 'main/product-form.html')
