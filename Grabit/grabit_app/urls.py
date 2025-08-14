@@ -9,4 +9,6 @@ urlpatterns = [
     path('logout/', views.logoutPage, name="logout"),
 
     path('add-new-product/', views.productForm, name="product-form"),
+
+    path('seller-account-<str:pk>', views.sellerAccount, name="seller-account")
 ]

@@ -145,7 +145,6 @@
 
   .deals-container {
       border-radius: 12px;
-      background-color: #f5ffff;
       padding: 20px;
       margin: 20px auto;
       max-width: 1500px;
@@ -162,19 +161,19 @@
 
   .deals-header h2 {
       margin: 0;
-      font-size: 20px;
-      color: #000;
+      font-size: 25px;
+      color: #fefefe;
   }
 
   .deals-header p {
       margin: 0;
-      font-size: 14px;
-      color: #262626;
+      font-size: 18px;
+      color: #fefefe;
   }
 
   .view-more {
       font-size: 14px;
-      color: #0071e3;
+      color: #fefefe;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -182,11 +181,11 @@
   }
 
   .view-more:hover {
-    color: #9d9d9d;
+      color: #9d9d9d;
   }
 
-  .view-more:active{
-    color: #960037;
+  .view-more:active {
+      color: #960037;
   }
 
   .product-grid {

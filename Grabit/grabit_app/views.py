@@ -73,8 +73,8 @@ def logoutPage(request):
     return redirect('home')
 
 @login_required(login_url='login')
-def sellerAccount(request):
-    return render()
+def sellerAccount(request, pk):
+    return render(request, "main/seller-account.html", {})
 
 @login_required(login_url='login')
 def productForm(request):
