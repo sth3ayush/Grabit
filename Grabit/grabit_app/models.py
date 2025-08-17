@@ -65,7 +65,7 @@ class Product(models.Model):
         ratings = self.ratings.all()
         if ratings.exists():
             avg = sum(r.rating for r in ratings) / ratings.count()
-            return round(avg)
+            return round(avg, 1)
         return 0
 
     def save(self, *args, **kwargs):

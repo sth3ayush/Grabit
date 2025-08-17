@@ -49,6 +49,10 @@
     gap:10px;
     color:#696969;
     font-size:.95rem;
+    margin: 0;
+  }
+  .store-details span{
+    margin: 0;
   }
   .seller-container .add-btn{
     background:#0295db;

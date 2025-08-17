@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib import messages
+from django.db.models import Q
 
 User = get_user_model()
 
@@ -74,7 +75,9 @@ def logoutPage(request):
 
 @login_required(login_url='login')
 def sellerAccount(request, pk):
-    return render(request, "main/seller-account.html", {})
+    seller_act = StoreAccount.objects.filter(user__id = pk).first()
+    product = Product.objects.filter(user = seller_act.user)
+    return render(request, "main/seller-account.html", {"seller_act": seller_act, "prodect": product})
 
 @login_required(login_url='login')
 def productForm(request):
@@ -108,3 +111,11 @@ def productForm(request):
             })
         
     return render(request, 'main/product-form.html')
+
+def productList(request):
+    q = request.GET.get('q') if request.GET.get('q') else ''
+    products = Product.objects.filter(
+        Q(name__icontains=q) | 
+        Q(description__icontains=q)
+    )
+    return render(request, "main/product-list.html", {"products": products, "query": q})

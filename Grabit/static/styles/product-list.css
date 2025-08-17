@@ -1,0 +1,250 @@
+  .layout-container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 20px;
+      max-width: 1400px;
+      margin: 5px auto;
+      padding: 0 15px;
+  }
+
+  .l-product-filters {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      max-width: 280px;
+      font-family: Arial, sans-serif;
+      margin: 5px 0;
+  }
+
+  .l-product-filters h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #333;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+      margin: 5px 0;
+  }
+
+  .l-filter-heading {
+      font-size: 15px;
+      font-weight: bold;
+      margin: 20px 0 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #eee;
+      color: #222;
+  }
+
+  .l-filter-checkbox {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      cursor: pointer;
+      position: relative;
+      font-size: 14px;
+      color: #444;
+      margin: 5px 0;
+  }
+
+  .l-filter-checkbox input {
+      display: none;
+      margin: 5px 0;
+  }
+
+  .l-checkmark {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #007BFF;
+      border-radius: 4px;
+      margin-right: 8px;
+      display: inline-block;
+      position: relative;
+      margin: 5px 0;
+  }
+
+  .l-filter-checkbox input:checked+.l-checkmark {
+      background-color: #007BFF;
+      border-color: #007BFF;
+  }
+
+  .l-filter-checkbox input:checked+.l-checkmark::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 0px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+  }
+
+  .l-price-range {
+      margin: 15px 0;
+      display: flex;
+      flex-direction: column;
+      margin: 5px 0;
+  }
+
+  .l-price-range label {
+      font-size: 13px;
+      margin: 4px 0 2px;
+      margin: 5px 0;
+  }
+
+  .l-price-range input {
+      padding: 6px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      outline: none;
+      margin: 5px 0;
+  }
+
+  .l-price-range input:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+  }
+
+  .l-apply-btn {
+      width: 100%;
+      padding: 10px;
+      background: #0295db;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+      margin: 5px 0;
+  }
+
+  .l-apply-btn:hover {
+      background: #0056b3;
+  }
+
+  .main-content {
+      height: calc(100vh - 80px);
+      overflow-y: auto;
+      padding-right: 8px;
+      scrollbar-width: none;
+      overflow-x: hidden;
+      margin: 0;
+  }
+
+  .main-content::-webkit-scrollbar {
+      display: none;
+  }
+
+  .main-content h2 {
+      font-size: 24px;
+      margin-bottom: 5px;
+      margin: 0;
+  }
+
+  .main-content p {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #555;
+      margin: 0;
+  }
+
+  .l-product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      overflow-x: hidden;
+      margin: 0;
+  }
+
+  .l-product-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+  }
+
+  .l-product-card:hover {
+      transform: translateY(-5px);
+  }
+
+  .l-product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      margin: 0;
+  }
+
+  .l-product-info {
+      padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0;
+  }
+
+  .l-product-info h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      font-weight: bold;
+      margin: 0;
+  }
+
+  .l-product-info p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+      flex-grow: 1;
+      margin: 0;
+  }
+
+  .l-product-price-rating {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      margin: 0;
+  }
+
+  .l-product-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+      margin: 0;
+  }
+
+  .l-product-discount {
+      background: #ff4d4f;
+      color: #fff;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin: 0;
+  }
+
+  .l-product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      margin: 0;
+  }
+
+  .l-product-stock {
+      color: green;
+      font-weight: bold;
+      margin: 0;
+  }
+
+  .l-product-rating {
+      color: #ffa500;
+      font-weight: bold;
+      margin: 0;
+  }

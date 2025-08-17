@@ -10,5 +10,7 @@ urlpatterns = [
 
     path('add-new-product/', views.productForm, name="product-form"),
 
-    path('seller-account-<str:pk>', views.sellerAccount, name="seller-account")
+    path('seller-account-<str:pk>', views.sellerAccount, name="seller-account"),
+
+    path('product-list/', views.productList, name="product-list")
 ]

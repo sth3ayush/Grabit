@@ -1,0 +1,97 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="layout-container">
+    <form class="l-product-filters">
+        {% csrf_token %}
+        <h3>Filter Products</h3>
+
+        <h4 class="l-filter-heading">Discount</h4>
+        <label class="l-filter-checkbox">
+            <input type="checkbox" name="discount" value="true">
+            <span class="l-checkmark"></span>
+            Only Discount Deals
+        </label>
+
+        <h4 class="l-filter-heading">Price</h4>
+        <div class="l-price-range">
+            <label>Max Price:</label>
+            <input type="number" name="max_price" placeholder="e.g. 500">
+
+            <label>Min Price:</label>
+            <input type="number" name="min_price" placeholder="e.g. 50">
+        </div>
+
+        <label class="l-filter-checkbox">
+            <input type="radio" name="sort" value="high">
+            <span class="l-checkmark"></span>
+            Price: High → Low
+        </label>
+
+        <label class="l-filter-checkbox">
+            <input type="radio" name="sort" value="low">
+            <span class="l-checkmark"></span>
+            Price: Low → High
+        </label>
+
+        <h4 class="l-filter-heading">Rating</h4>
+
+        <label class="l-filter-checkbox">
+            <input type="radio" name="rating" value="5">
+            <span class="l-checkmark"></span>
+            ⭐⭐⭐⭐⭐
+        </label>
+
+        <label class="l-filter-checkbox">
+            <input type="radio" name="rating" value="4">
+            <span class="l-checkmark"></span>
+            ⭐⭐⭐⭐ & Up
+        </label>
+
+        <label class="l-filter-checkbox">
+            <input type="radio" name="rating" value="3">
+            <span class="l-checkmark"></span>
+            ⭐⭐⭐ & Up
+        </label>
+
+        <label class="l-filter-checkbox">
+            <input type="radio" name="rating" value="2">
+            <span class="l-checkmark"></span>
+            ⭐⭐ & Up
+        </label>
+
+        <label class="l-filter-checkbox">
+            <input type="radio" name="rating" value="1">
+            <span class="l-checkmark"></span>
+            ⭐ & Up
+        </label>
+
+        <button type="submit" class="l-apply-btn">Apply Filters</button>
+    </form>
+
+    <div class="main-content">
+        <h2>Electronics</h2>
+        <p>4 products found</p>
+
+        <div class="l-product-container">
+            <div class="l-product-card">
+                <img src="data:image/jpeg;base64,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" alt="Product 1">
+                <div class="l-product-info">
+                    <h3>Wireless Noise-Canceling Headphones</h3>
+                    <p>Over-ear comfort, 35h battery, Type-C fast charge.</p>
+                    <div class="l-product-price-rating">
+                        <span class="l-product-price">$129.00</span>
+                        <span class="l-product-discount">-20%</span>
+                    </div>
+                    <div class="l-product-bottom">
+                        <span class="l-product-stock">10 left</span>
+                        <span class="l-product-rating">⭐ 4.3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
