@@ -115,6 +115,9 @@ def productForm(request):
 
     return render(request, 'main/product-form.html')
 
+def product(request):
+    return render(request, "main/product.html")
+
 def productList(request):
     q = request.GET.get('q') if request.GET.get('q') else ''
     products = Product.objects.filter(

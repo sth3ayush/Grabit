@@ -34,8 +34,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text" name="feature[]" value="Color" required></td>
-                        <td><input type="text" name="value[]" value="Black" required></td>
+                        <td><input type="text" name="feature[]" placeholder="e.g. Color" required></td>
+                        <td><input type="text" name="value[]" placeholder="e.g. Black" required></td>
                         <td><button type="button" class="remove-btn">❌</button></td>
                     </tr>
                 </tbody>
@@ -86,45 +86,55 @@
         }, 200);
     });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
-    const tableBody = document.querySelector("#featuresTable tbody");
-    const descriptionField = document.getElementById("descriptionField");
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const tableBody = document.querySelector("#featuresTable tbody");
+        const descriptionField = document.getElementById("descriptionField");
 
-    // Add new feature row
-    document.querySelector(".add-feature-btn").addEventListener("click", function () {
-        let row = document.createElement("tr");
-        row.innerHTML = `
+        document.querySelector(".add-feature-btn").addEventListener("click", function () {
+            let row = document.createElement("tr");
+            row.innerHTML = `
             <td><input type="text" name="feature[]" placeholder="Feature" required></td>
             <td><input type="text" name="value[]" placeholder="Value" required></td>
             <td><button type="button" class="remove-btn">❌</button></td>
         `;
-        tableBody.appendChild(row);
-    });
+            tableBody.appendChild(row);
+        });
 
-    // Remove row
-    tableBody.addEventListener("click", function (e) {
-        if (e.target.classList.contains("remove-btn")) {
-            e.target.closest("tr").remove();
-        }
-    });
-
-    // ✅ On submit → fill textarea with JSON
-    form.addEventListener("submit", function () {
-        let features = document.querySelectorAll("input[name='feature[]']");
-        let values = document.querySelectorAll("input[name='value[]']");
-        let data = {};
-
-        features.forEach((f, i) => {
-            if (f.value.trim() && values[i].value.trim()) {
-                data[f.value.trim()] = values[i].value.trim();
+        tableBody.addEventListener("click", function (e) {
+            if (e.target.classList.contains("remove-btn")) {
+                e.target.closest("tr").remove();
             }
         });
 
-        descriptionField.value = JSON.stringify(data);
-        console.log("✅ Final JSON stored in textarea:", descriptionField.value);
+        form.addEventListener("submit", function () {
+            let features = document.querySelectorAll("input[name='feature[]']");
+            let values = document.querySelectorAll("input[name='value[]']");
+            let data = {};
+
+            features.forEach((f, i) => {
+                if (f.value.trim() && values[i].value.trim()) {
+                    data[f.value.trim()] = values[i].value.trim();
+                }
+            });
+
+            descriptionField.value = JSON.stringify(data);
+            console.log("✅ Final JSON stored in textarea:", descriptionField.value);
+        });
     });
-});
+
+    const input = document.getElementById("images");
+
+  input.addEventListener("change", (event) => {
+    const files = event.target.files;
+    
+    if (files.length > 6) {
+      alert("You can only upload up to 6 images. The page will reset.");
+      // Reset the input and reload the page
+      input.value = ""; 
+      location.reload(); // reloads the page
+    }
+  });
 </script>
 
 {% endblock %}
