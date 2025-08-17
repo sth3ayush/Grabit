@@ -83,13 +83,18 @@ def sellerAccount(request, pk):
 def productForm(request):
     if request.method == 'POST':
         try:
+            features = request.POST.getlist("feature[]")
+            values = request.POST.getlist("value[]")
+
+            desc = dict(zip(features, values))
+
             product = Product.objects.create(
-                user = request.user,
-                name = request.POST.get('p_name'),
-                price = request.POST.get('price'),
-                description = request.POST.get('description'),
-                discount_percent = request.POST.get('discount'),
-                brand = request.POST.get('brand')
+                user=request.user,
+                name=request.POST.get('p_name'),
+                price=request.POST.get('price'),
+                description=desc,
+                discount_percent=request.POST.get('discount'),
+                brand=request.POST.get('brand')
             )
 
             files = request.FILES.getlist('images')
@@ -97,19 +102,17 @@ def productForm(request):
                 return render(request, 'main/product-form.html', {
                     "error": "Please upload at least one image"
                 })
-            
+
             for image in files:
-                ProductImage.objects.create(
-                    product = product,
-                    image = image
-                )
+                ProductImage.objects.create(product=product, image=image)
 
             return redirect('home')
+
         except Exception as e:
-            return render(request, 'main.product-form.html', {
-                "error": f"Error while adding product {e}"
+            return render(request, 'main/product-form.html', {
+                "error": f"Error while adding product: {e}"
             })
-        
+
     return render(request, 'main/product-form.html')
 
 def productList(request):

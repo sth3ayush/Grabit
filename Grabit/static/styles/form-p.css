@@ -19,7 +19,7 @@
 
     .product-form form {
         width: 100%;
-        max-width: 400px;
+        max-width: 600px;
         margin: 0;
     }
 
@@ -144,4 +144,73 @@
         border-radius: 10px 0 0 10px;
         object-fit: cover;
         margin: 0;
+    }
+
+    #featuresTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0 15px 0;
+        font-family: Arial, sans-serif;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    #featuresTable th,
+    #featuresTable td {
+        border: 1px solid #e1e1e1;
+        padding: 10px 12px;
+        text-align: left;
+    }
+
+    #featuresTable th {
+        background: #f5f7fa;
+        font-weight: 600;
+        font-size: 14px;
+        color: #333;
+    }
+
+    #featuresTable td input {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #d1d1d1;
+        border-radius: 6px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    #featuresTable td button {
+        background: #fefefe;
+        border: none;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    #featuresTable td button i{
+        margin: 0;
+        color: #fefefe;
+    }
+
+    #featuresTable td button:hover {
+        background: #e63c3c;
+    }
+
+    .add-feature-btn {
+        background: #0295db;
+        color: #fff;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        margin-bottom: 15px;
+    }
+
+    .add-feature-btn:hover {
+        background: #027cb6;
     }

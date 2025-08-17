@@ -52,7 +52,7 @@ class Product(models.Model):
         max_digits=10,
         validators=[MinValueValidator(0)]
         )
-    description = models.TextField(null=True, blank=True)
+    description = models.JSONField(null=True, blank=True)
     discount_percent = models.DecimalField(
         validators=[MinValueValidator(0.0), MaxValueValidator(100.0)],
         decimal_places=1,

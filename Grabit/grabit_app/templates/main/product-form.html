@@ -23,8 +23,26 @@
             <label>Discount (%)</label>
             <input type="number" name="discount" placeholder="Enter discount" value="0.0" required>
 
-            <label>Description</label>
-            <textarea name= "description" placeholder="Enter description"></textarea>
+            <label>Specifications</label>
+            <table id="featuresTable" border="1" style="width:100%; border-collapse:collapse; margin-bottom:15px;">
+                <thead style="background:#f9f9f9;">
+                    <tr>
+                        <th style="padding:8px; text-align:left;">Feature</th>
+                        <th style="padding:8px; text-align:left;">Value</th>
+                        <th style="padding:8px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="feature[]" value="Color" required></td>
+                        <td><input type="text" name="value[]" value="Black" required></td>
+                        <td><button type="button" class="remove-btn">❌</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" onclick="addRow()" class="add-feature-btn">+ Add Feature</button>
+
+            <textarea name="description" id="descriptionField" style="display:none;"></textarea>
 
             <label>Brand</label>
             <input type="text" name="brand" placeholder="Enter brand" value="No Brand" required>
@@ -56,7 +74,6 @@
         let count = imageInput.files.length;
         imageCounter.textContent = `${count} image${count !== 1 ? 's' : ''} uploaded`;
 
-        // Fake progress animation
         progressBar.style.width = '0%';
         let progress = 0;
         let fakeUpload = setInterval(() => {
@@ -68,6 +85,46 @@
             }
         }, 200);
     });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const tableBody = document.querySelector("#featuresTable tbody");
+    const descriptionField = document.getElementById("descriptionField");
+
+    // Add new feature row
+    document.querySelector(".add-feature-btn").addEventListener("click", function () {
+        let row = document.createElement("tr");
+        row.innerHTML = `
+            <td><input type="text" name="feature[]" placeholder="Feature" required></td>
+            <td><input type="text" name="value[]" placeholder="Value" required></td>
+            <td><button type="button" class="remove-btn">❌</button></td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Remove row
+    tableBody.addEventListener("click", function (e) {
+        if (e.target.classList.contains("remove-btn")) {
+            e.target.closest("tr").remove();
+        }
+    });
+
+    // ✅ On submit → fill textarea with JSON
+    form.addEventListener("submit", function () {
+        let features = document.querySelectorAll("input[name='feature[]']");
+        let values = document.querySelectorAll("input[name='value[]']");
+        let data = {};
+
+        features.forEach((f, i) => {
+            if (f.value.trim() && values[i].value.trim()) {
+                data[f.value.trim()] = values[i].value.trim();
+            }
+        });
+
+        descriptionField.value = JSON.stringify(data);
+        console.log("✅ Final JSON stored in textarea:", descriptionField.value);
+    });
+});
 </script>
 
 {% endblock %}
