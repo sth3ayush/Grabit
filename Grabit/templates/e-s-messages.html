@@ -1,0 +1,20 @@
+{% if messages %}
+  <div class="h-messages">
+    {% for message in messages %}
+      <div class="h-message {% if message.tags %}{{ message.tags }}{% endif %}">
+        <span class="h-message-text">{{ message }}</span>
+        <span class="h-close" onclick="this.parentElement.remove()">&times;</span>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      document.querySelectorAll(".h-message").forEach(msg => {
+        msg.remove();
+      });
+    }, 2000);
+  });
+</script>

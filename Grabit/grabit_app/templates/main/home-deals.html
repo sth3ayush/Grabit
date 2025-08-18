@@ -1,0 +1,41 @@
+<div class="deals-container discount-deals-container">
+    <div class="deals-header">
+        <div>
+            <h2>Top Discount Deals</h2>
+            <p>Score the lowest price at Top Discount Deals</p>
+        </div>
+        <a class="view-more">View more ➜</a>
+    </div>
+
+    <div class="product-grid">
+        {% for product in discount_deals %}
+        <a class="product-card" href="{% url 'product' product.id %}">
+            <img src="{{ product.first_image }}" alt="Product">
+            <div class="product-info">
+                <div class="price">Rs{{ product.price }} <span class="old-price">Rs{{ product.old_price }}</span></div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="deals-container latest-deals-container">
+    <div class="deals-header">
+        <div>
+            <h2>New Arrival</h2>
+            <p>Be ready for latest added products</p>
+        </div>
+        <a class="view-more">View more ➜</a>
+    </div>
+
+    <div class="product-grid">
+        {% for product in latest_deals %}
+        <a class="product-card" href="#">
+            <img src="{{ product.first_image}}" alt="Product">
+            <div class="product-info">
+                <div class="product-date">{{ product.created_at|timesince }}</div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>

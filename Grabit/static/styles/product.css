@@ -3,9 +3,8 @@
         grid-template-columns: 1fr 1.2fr;
         gap: 30px;
         background: #fff;
-        border-radius: 12px;
         padding: 20px;
-        margin: 10px auto;
+        margin: 10px auto 1px 0;
     }
 
     .i-image-gallery {
@@ -78,13 +77,12 @@
         text-decoration: line-through;
         color: #888;
         font-size: 18px;
-        margin-right: 10px;
     }
 
     .i-new-price {
         font-size: 22px;
         font-weight: bold;
-        margin: 0;
+        margin-right: 10px;
         color: #e63946;
     }
 
@@ -136,11 +134,141 @@
         background: #005ecb;
     }
 
-    .i-specs {
-        margin: 5px 0;
+    .i-seller-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .i-seller-img {
+        margin: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ddd;
+    }
+
+    .i-seller-info .i-store-name {
+        font-weight: bold;
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .i-store-name {
+        color: #262626;
+    }
+
+    .i-store-name:hover {
+        text-decoration: underline;
+    }
+
+    .i-actions {
+        display: flex;
+        gap: 12px;
+        margin: 15px 0;
+    }
+
+    .i-actions button {
+        padding: 8px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        border: none;
+        font-size: 14px;
+        transition: 0.3s;
+        margin: 0 0 0 20px;
+    }
+
+    .i-wishlist {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+    }
+
+    .i-wishlist:hover {
+        background: #ffebeb;
+    }
+
+    .i-share {
+        background: #0295db;
+        color: #fff;
+    }
+
+    .i-share:hover {
+        background: #005ecb;
+    }
+
+    .i-share-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Modal content */
+    .i-share-content {
         background: #fff;
         padding: 20px;
         border-radius: 12px;
+        width: 320px;
+        text-align: center;
+        position: relative;
+    }
+
+    /* Close button */
+    .i-close {
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        font-size: 20px;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    /* URL box */
+    .i-url-box {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 15px;
+    }
+
+    .i-url-box input {
+        flex: 1;
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .i-url-box button {
+        padding: 6px 10px;
+        border: none;
+        background: #0295db;
+        color: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    .i-url-box button:hover {
+        background: #005ecb;
+    }
+
+    .i-qr-box {
+        margin-top: 10px;
+    }
+
+    .i-specs {
+        margin: 0;
+        background: #fff;
+        padding: 20px;
     }
 
     .i-specs h2 {
@@ -170,19 +298,18 @@
     .i-qa-reviews {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: 1px;
         margin-top: 40px;
         max-width: 100%;
-        margin: 5px 0;
+        margin: 1px 0;
     }
 
     .i-qa-section,
     .i-review-section {
         background: #fff;
         padding: 20px;
-        border-radius: 12px;
         width: 100%;
-        height: 300px;
+        height: 500px;
         overflow-y: auto;
         overflow-x: hidden;
         display: flex;
@@ -196,6 +323,14 @@
         flex-shrink: 0;
         margin: 0;
     }
+
+    .i-qa-section form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+
 
     .i-qa-section input {
         padding: 10px;

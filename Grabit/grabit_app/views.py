@@ -2,15 +2,19 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.decorators import login_required
-from django.conf import settings
 from django.contrib import messages
 from django.db.models import Q
+from decimal import Decimal
+from django.urls import reverse
 
 User = get_user_model()
 
 def home(request):
     category = Category.objects.all().order_by('c_name')
-    context = {'category': category}
+    discount_deals = Product.objects.all().order_by('discount_percent')[:5]
+    latest_deals = Product.objects.all().order_by('created_at')[:5]
+
+    context = {'discount_deals': discount_deals, 'latest_deals': latest_deals, 'category': category}
     return render(request, "main/home.html", context)
 
 def loginPage(request):
@@ -25,9 +29,10 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
+            messages.success(request, 'Login Successful!')
             return redirect('home')
         else: 
-            messages.error(request, 'Email or Password is incorrect')
+            messages.error(request, 'Email or Password is incorrect! Please try again.')
     
     context = {}
     return render(request, 'main/login.html', context)
@@ -45,9 +50,9 @@ def registerPage(request):
             password2 = request.POST.get('password2')
 
             if password1 != password2:
-                context = {'error_msg': "Passwords don't match. Please try again."}
+                messages.error(request, "Passwords don't match! Please try again.")
 
-                return render(request, "main/register.html", context)
+                return render(request, "main/register.html")
 
             try:
                 user = User.objects.create_user(
@@ -57,13 +62,14 @@ def registerPage(request):
                     password=password1
                 )
                 login(request, user)
+                messages.success(request, "Account created successfully.")
                 return redirect('home')
             
             except Exception as e:
-                return render(request, "main/register.html", {
-                    'error_msg': f"Registration failed: {e}"
-                })
-        except:
+                messages.error(request, "Registration failed: {e}")
+                return render(request, "main/register.html")
+        except Exception as e:
+            messages.error(request, "Error: {e}")
             return redirect('register')
 
     return render(request, "main/register.html")
@@ -71,6 +77,7 @@ def registerPage(request):
 @login_required(login_url='login')
 def logoutPage(request):
     logout(request)
+    messages.info(request, "Logged out.")
     return redirect('home')
 
 @login_required(login_url='login')
@@ -83,6 +90,16 @@ def sellerAccount(request, pk):
 def productForm(request):
     if request.method == 'POST':
         try:
+            discount_percent = Decimal(request.POST.get('discount') or 0)
+            price = Decimal(request.POST.get('price') or 0)
+
+            if discount_percent > 0:
+                old_price = price
+                discount_amt = (old_price * discount_percent) / Decimal(100)
+                price = old_price - discount_amt
+            else:
+                old_price = price
+
             features = request.POST.getlist("feature[]")
             values = request.POST.getlist("value[]")
 
@@ -91,32 +108,52 @@ def productForm(request):
             product = Product.objects.create(
                 user=request.user,
                 name=request.POST.get('p_name'),
-                price=request.POST.get('price'),
+                price = price,
+                old_price = old_price,
                 description=desc,
-                discount_percent=request.POST.get('discount'),
+                discount_percent = discount_percent,
                 brand=request.POST.get('brand')
             )
 
             files = request.FILES.getlist('images')
             if not files:
-                return render(request, 'main/product-form.html', {
-                    "error": "Please upload at least one image"
-                })
+                messages.warning(request, "Upload at least 1 image")
+                return render(request, 'main/product-form.html')
 
             for image in files:
                 ProductImage.objects.create(product=product, image=image)
-
+            messages.success(request, "Product added successfully.")
             return redirect('home')
 
         except Exception as e:
-            return render(request, 'main/product-form.html', {
-                "error": f"Error while adding product: {e}"
-            })
+            messages.error(request, "Error while adding product: {e}")
+            return render(request, 'main/product-form.html')
 
     return render(request, 'main/product-form.html')
 
-def product(request):
-    return render(request, "main/product.html")
+def product(request, pk):
+    product = Product.objects.get(id=pk)
+    product_imgs = ProductImage.objects.filter(product=product)
+    store = StoreAccount.objects.get(user = product.user)
+    questions = ProductQuestion.objects.filter(product = product)
+    
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            try:
+                ProductQuestion.objects.create(
+                    user = request.user,
+                    product = product,
+                    question = request.POST.get('question')
+                )
+            except Exception as e:
+                messages.error(request, "Error while adding question: {e}")
+                return render(request, "main/product.html")
+        else:
+            messages.error(request, "You must be logged in to ask a question.")
+            return redirect('login')
+        return redirect(reverse("product", args=[pk]))
+    context = {'product': product, 'product_imgs': product_imgs, 'store': store, 'questions': questions}
+    return render(request, "main/product.html", context)
 
 def productList(request):
     q = request.GET.get('q') if request.GET.get('q') else ''

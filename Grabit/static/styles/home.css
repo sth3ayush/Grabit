@@ -246,6 +246,7 @@
       font-size: 20px;
       font-weight: bold;
       color: #0295db;
+      margin: 0;
   }
 
   .old-price {
@@ -277,11 +278,6 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   letter-spacing: 0.5px;
   text-transform: uppercase;
-}
-
-.product-date::before {
-  content: "🕒 ";
-  margin-right: 4px;
 }
 
   .product-name {

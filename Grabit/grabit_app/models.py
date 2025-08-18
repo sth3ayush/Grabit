@@ -52,6 +52,12 @@ class Product(models.Model):
         max_digits=10,
         validators=[MinValueValidator(0)]
         )
+    old_price = models.DecimalField(
+        default=0,
+        decimal_places=2,
+        max_digits=10,
+        validators=[MinValueValidator(0)],
+        )
     description = models.JSONField(null=True, blank=True)
     discount_percent = models.DecimalField(
         validators=[MinValueValidator(0.0), MaxValueValidator(100.0)],
@@ -76,6 +82,13 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.user.email} {self.name}"
+    
+    @property
+    def first_image(self):
+        first_img = self.productimage_set.first()  
+        if first_img:
+            return first_img.image.url  
+        return None
     
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

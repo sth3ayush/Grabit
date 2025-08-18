@@ -12,6 +12,6 @@ urlpatterns = [
 
     path('seller-account-<str:pk>', views.sellerAccount, name="seller-account"),
 
-    path('product/', views.product, name="product"),
+    path('product-<str:pk>', views.product, name="product"),
     path('product-list/', views.productList, name="product-list"),
 ]
